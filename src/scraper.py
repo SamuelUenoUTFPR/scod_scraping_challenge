@@ -29,7 +29,7 @@ class Scraper:
             print(f"Erro ao buscar HTML: {e}")
             return None 
         
-    def _analisar_dados(self, html_content: str): s
+    def _analisar_dados(self, html_content: str): 
         print("Analisando o conteúdo HTML...")
         soup = BeautifulSoup(html_content, 'lxml') 
         linhas_tabela = soup.select('tbody tr') 
