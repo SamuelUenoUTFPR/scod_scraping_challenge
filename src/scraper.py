@@ -1,46 +1,79 @@
-import requests # importa a biblioteca requests para fazer requisições HTTP
-from bs4 import BeautifulSoup # importa a biblioteca BeautifulSoup para fazer parsing de HTML
+import requests 
+from bs4 import BeautifulSoup 
 
-class Scraper: # Cria a classe Scraper para encapsular a lógica de scraping
-    def __init__(self, url: str): # O método __init__ é o construtor da classe, que inicializa a instância com a URL fornecida
-        self.url = url # Atributo que armazena a URL a ser raspada
-        self.dados_extraidos = [] # Atributo que armazenará os dados extraídos
-        print(f"Scraper inicializando para a URL: {self.url}") # Mensagem de inicialização
+class Scraper: 
+    def __init__(self, url: str): 
+        self.url = url 
+        self.dados_extraidos = [] 
+        print(f"Scraper inicializando para a URL: {self.url}") 
     
-    def run(self): # Método principal para iniciar o processo de scraping
+    def run(self):
         print("Iniciando o processo de scraping") 
-        # Logica depois eu vou colocar aqui
-        print("Scraping finalizado.")
-        return self.dados_extraidos # Retorna os dados extraídos
+        html = self._buscar_html()
+        if html:
+            self._analisar_dados(html)
+        
+        print("Scraping finalizado. Total de {len(self.dados_extraidos)} registros coletados.")
+        return self.dados_extraidos 
 
-    def _buscar_html(self) -> str | None: # O _ indica que este metodo é para uso interno da classe
-        try: # Essencial para tratar erros de conexão e timeout
+    def _buscar_html(self) -> str | None: 
+        try: 
             print(f"Buscando conteúdo de {self.url}...") 
-            headers = { # Define um cabeçalho de requisição para simular um navegador real
+            headers = { 
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
             }
-            response = requests.get(self.url, headers=headers, timeout=10) # Faz a requisição GET com um timeout de 10 segundos
-            response.raise_for_status() # Lança um erro para status HTTP 4xx ou 5xx, uma forma de verificar se a requisição foi bem sucedida (status 200)
-            return response.text # Retorna o conteúdo HTML da página
-        except requests.RequestException as e: # Essencial para tratart erros de conexão e timeout
+            response = requests.get(self.url, headers=headers, timeout=10) 
+            response.raise_for_status() 
+            return response.text 
+        except requests.RequestException as e: 
             print(f"Erro ao buscar HTML: {e}")
             return None 
         
-    def _analisar_dados(self, html_content: str): # Método para analisar o conteúdo HTML e extrair dados
+    def _analisar_dados(self, html_content: str): s
         print("Analisando o conteúdo HTML...")
-        soup = BeautifulSoup(html_content, 'lxml') # Usa o parser lxml para analisar o HTML
-        linhas_tabela = soup.select('tbody tr') # Seleciona todas as linhas dentro do corpo da tabela
+        soup = BeautifulSoup(html_content, 'lxml') 
+        linhas_tabela = soup.select('tbody tr') 
         print(f"Encontradas {len(linhas_tabela)} linhas na tabela.")
 
-        for linha in linhas_tabela: # Itera sobre cada linha da tabela
-            colunas = linha.find_all('td') # Extrai todas as colunas (td) da linha
-            if len(colunas) >= 7:  # Verifica se há colunas suficientes
-                dado = {
-                    'coluna1': colunas[0].get_text(strip=True),
-                    'coluna2': colunas[1].get_text(strip=True),
-                    'coluna3': colunas[2].get_text(strip=True),
-                    'coluna4': colunas[3].get_text(strip=True),
-                    'coluna5': colunas[4].get_text(strip=True),
-                }
-                self.dados_extraidos.append(dado)
+        for linha in linhas_tabela: 
+            colunas = linha.find_all('td') 
+            if len(colunas) == 7:
+                try:
+                    descricao = colunas[0].get_text(strip=True)
+                    exercicio_str = colunas[1].get_text(strip=True)
+                    parcela = colunas[2].get_text(strip=True)
+                    vencimento = colunas[3].get_text(strip=True)
+                    valor_str = colunas[4].get_text(strip=True)
+                    status = colunas[5].get_text(strip=True)
+
+                    tag_a_boleto = colunas[6].find('a')
+                    link_boleto = tag_a_boleto.get('href') if tag_a_boleto else None
+
+                    exercicio = int(exercicio_str)
+
+                    valor_limpo = valor_str.replace("R$", "").strip().replace(",", ".")
+                    valor = float(valor_limpo)
+
+                    dado = {
+                        "descricao": descricao,
+                        "exercicio": exercicio,
+                        "parcela": parcela,
+                        "vencimento": vencimento,
+                        "valor": valor,
+                        "status": status,
+                        "boleto_url": link_boleto
+                    }
+                    self.dados_extraidos.append(dado)
+                except (ValueError, IndexError) as e:
+                    print(f"Erro ao processar uma linha da tabela: {e}")
+        
+if __name__ == '__main__':
+    URL_ALVO = "https://arth-inacio.github.io/scod_scraping_challenge/"
+    meu_scraper = Scraper(url=URL_ALVO)
+    dados = meu_scraper.run()
+
+    if dados:
+        print("\n--- DADOS EXTRAIDOS ---")
+        import json
+        print(json.dumps(dados[0], indent=2, ensure_ascii=False))
                 
