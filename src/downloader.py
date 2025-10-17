@@ -39,13 +39,13 @@ class Downloader:
             await asyncio.gather(*tarefas)
         print("Processo de download finalizado.")
     
-    if __name__ == '__main__':
-        dados_de_teste = [
-            {"descricao": "Teste 1", "boleto_url": "boletos/30000001.pdf"},
-            {"descricao": "Teste 2", "boleto_url": "boletos/30000002.pdf"},
-            {"descricao": "Teste 3 sem boleto", "boleto_url": None},
-            {"descricao": "Teste 4 - Inexistente", "boleto_url": "boletos/arquivo_nao_existe.pdf"}
-        ]
+if __name__ == '__main__':
+    dados_de_teste = [
+        {"descricao": "Teste 1", "boleto_url": "boletos/30000001.pdf"},
+        {"descricao": "Teste 2", "boleto_url": "boletos/30000002.pdf"},
+        {"descricao": "Teste 3 sem boleto", "boleto_url": None},
+        {"descricao": "Teste 4 - Inexistente", "boleto_url": "boletos/arquivo_nao_existe.pdf"}
+    ]
 
-        meu_downloader = Downloader(lista_de_dados=dados_de_teste)
-        asyncio.run(meu_downloader.run())
+    meu_downloader = Downloader(lista_de_dados=dados_de_teste)
+    asyncio.run(meu_downloader.run())
