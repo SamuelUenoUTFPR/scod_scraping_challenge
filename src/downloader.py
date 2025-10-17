@@ -42,8 +42,9 @@ class Downloader:
 if __name__ == '__main__':
     dados_de_teste = [
     {"descricao": "IPTU", "boleto_url": "boletos/30000001.pdf"},
-    {"descricao": "Taxa de Lixo", "boleto_url": "boletos/30000003.pdf"},
-    {"descricao": "Conta de Luz", "boleto_url": "boletos/30000004.pdf"}
+    {"descricao": "IPTU", "boleto_url": "boletos/30000002.pdf"},
+    {"descricao": "IPTU", "boleto_url": "boletos/30000003.pdf"},
+    {"descricao": "IPTU", "boleto_url": "boletos/30000004.pdf"}
     ]
 
     meu_downloader = Downloader(lista_de_dados=dados_de_teste)
