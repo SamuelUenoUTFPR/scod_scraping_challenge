@@ -13,7 +13,7 @@ class Downloader:
     async def _download_boleto(self, client: httpx.AsyncClient, dado: dict):
         url_relativa = dado.get("boleto_url")
         if not url_relativa:
-            print(f"[AVISO] Registro '{dado['desicricao']}' não possui URL de boleto.")
+            print(f"[AVISO] Registro '{dado['descricao']}' não possui URL de boleto.")
             return
         url_base = "https://arth-inacio.github.io/scod_scraping_challenge/"
         url_completa = f"{url_base}{url_relativa}"
