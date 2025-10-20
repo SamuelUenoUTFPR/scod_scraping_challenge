@@ -1,5 +1,6 @@
 import requests 
 from bs4 import BeautifulSoup 
+from .utils import formatar_valor_monetario
 
 class Scraper: 
     def __init__(self, url: str): 
@@ -51,8 +52,7 @@ class Scraper:
 
                     exercicio = int(exercicio_str)
 
-                    valor_limpo = valor_str.replace("R$", "").strip().replace(",", ".")
-                    valor = float(valor_limpo)
+                    valor = formatar_valor_monetario(valor_str)
 
                     dado = {
                         "descricao": descricao,
