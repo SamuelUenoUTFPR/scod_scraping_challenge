@@ -23,7 +23,7 @@ class Downloader:
         try: 
             response = await client.get(url_completa, timeout = 30.0)
             response.raise_for_status()
-            print(f"-> Tentando salvar o arquivo como: '{caminho_arquivo}'")
+            print(f"-> Tentando salvar o arquivo como: '{caminho_arquivo}")
             with open(caminho_arquivo, "wb") as f:
                 f.write(response.content)
             print(f"[SUCESSO] Boleto '{nome_arquivo}' baixado.")
