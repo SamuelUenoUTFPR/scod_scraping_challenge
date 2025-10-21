@@ -1,0 +1,44 @@
+2025-10-20 17:31:11 - __main__ - INFO - Iniciando o processo de Scraping...
+2025-10-20 17:31:11 - __main__ - INFO - [Etapa 1/4] Iniciando a extração de dados na tabela...
+2025-10-20 17:31:11 - src.scraper - INFO - Scraper inicializando para a URL: https://arth-inacio.github.io/scod_scraping_challenge/
+2025-10-20 17:31:11 - src.scraper - INFO - Iniciando o processo de scraping
+2025-10-20 17:31:11 - src.scraper - INFO - Buscando conteúdo de https://arth-inacio.github.io/scod_scraping_challenge/...
+2025-10-20 17:31:12 - src.scraper - INFO - Analisando o conteúdo HTML...
+2025-10-20 17:31:12 - src.scraper - INFO - Encontradas 10 linhas na tabela.
+2025-10-20 17:31:12 - src.scraper - INFO - Scraping finalizado. Total de 10 registros coletados.
+2025-10-20 17:31:12 - __main__ - INFO - Extração concluida, 10 registros encontrados
+2025-10-20 17:31:12 - __main__ - INFO - 
+[Etapa 2/4] Iniciando o download dos boletos...
+2025-10-20 17:31:12 - src.downloader - INFO - Downloader inicializando. Os arquivos serão salvos em 'boletos/'
+2025-10-20 17:31:12 - src.downloader - INFO - Iniciando o processo de download assincrono...
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '30000003.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '30000006.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '30000004.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '753847.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '30000002.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '30000007.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '30000005.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '2139180.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '30000001.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - [SUCESSO] Boleto '18164829.pdf' baixado.
+2025-10-20 17:31:13 - src.downloader - INFO - Processo de download finalizado.
+2025-10-20 17:31:13 - __main__ - INFO - Download dos boletos concluido.
+2025-10-20 17:31:13 - __main__ - INFO - 
+[Etapa 3/4] Iniciando extração das linhas digitaveis...
+2025-10-20 17:31:13 - src.extractor - INFO - Extractor inicializado para a pasta: 'boletos'
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '30000001.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '30000002.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '30000003.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '30000004.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '30000005.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '30000006.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '30000007.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '753847.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '2139180.pdf'.
+2025-10-20 17:31:13 - src.extractor - INFO - [SUCESSO] Linha digitável encontrada em '18164829.pdf'.
+2025-10-20 17:31:13 - __main__ - INFO - Extração concluida
+2025-10-20 17:31:13 - __main__ - INFO - 
+[Etapa 4/4] Salvando dados finais em JSON...
+2025-10-20 17:31:13 - __main__ - INFO - Sucesso, dados salvos em 'data/dados.json'
+2025-10-20 17:31:13 - __main__ - INFO - 
+--- Processo Finalizado ---
