@@ -1,14 +1,4 @@
 <body>
-  <header>
-    <h1>🕵️‍♂️ SCOD Scraping Challenge</h1>
-    <p>Desafio de Estágio — SCOD Solutions</p>
-  </header>
-
-  <main>
-    <section>
-      <p>Bem-vindo(a) ao <strong>Desafio de Estágio - SCOD Solutions</strong>!<br>
-      Este teste tem como objetivo avaliar sua capacidade de <strong>coletar dados (web scraping)</strong>, organizar informações e automatizar pequenas tarefas com boas práticas de código.</p>
-    </section>
 
   <section>
     <h2>🚀 Desafio</h2>
